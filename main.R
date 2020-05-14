@@ -11,7 +11,7 @@ data_cli <- read.csv('clinical_data.csv')
 
 ### All data is divided into four cohort according to the center
 ##  The variable named 'zh' is the primary cohort, 'dzl' is the validation cohort 1, 'fd' is the validation cohort 2, 'zs' is the validation cohort 3.
-dzl<-which(data_pic$his=="dzl");fd<-which(data_pic$his=="fd");hn<-which(data_pic$his=="hn");yn<-which(data_pic$his=="yn");zs<-which(data_pic$his=="zs");zh<- c(hn,yn)  #×éºÏc/d
+dzl<-which(data_pic$his=="dzl");fd<-which(data_pic$his=="fd");hn<-which(data_pic$his=="hn");yn<-which(data_pic$his=="yn");zs<-which(data_pic$his=="zs");zh<- c(hn,yn)  #Ã—Ã©ÂºÃc/d
 dzly <- surv[dzl,];fdy <- surv[fd,];zsy <- surv[zs,];zhy <- surv[zh,]
 
 ### Normalization
@@ -199,8 +199,6 @@ for (st in 1:3) {
     vec_yazu <- data_yazu3[,i]
     cli_vec <- which(vec_yazu== vec_values[j]);data_yazu1 <- data_yazu3[cli_vec,];survy1 <- survy3[cli_vec,]
     veclie2 <- veclie3[cli_vec]
-    # high_risk <- which(veclie2 == "1");data_yazu2 <- data_yazu1[high_risk,];survy2 <- survy1[high_risk,]
-    # veclie1 <- data_yazu2$cli.afthua
 
     hrmatrix <- hazard.ratio(x=data_yazu1$rs,  surv.time = data_yazu1$time,  surv.event = data_yazu1$event)
     hrdata1 <- data.frame(vectname = paste(name_vec[i],vec_values[j]), hr = hrmatrix$hazard.ratio, low = hrmatrix$lower, up = hrmatrix$upper)
